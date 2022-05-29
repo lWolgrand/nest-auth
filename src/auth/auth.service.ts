@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
+import { User } from '@prisma/client';
 @Injectable()
 export class AuthService {
   constructor(private readonly userService: UserService) { }
+
+  login(user: User) {
+
+  }
 
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.userService.findByEmail(email);
@@ -18,10 +23,5 @@ export class AuthService {
       }
     }
     throw new Error('Invalid credentials');
-  }
-  login() {
-    return {
-      message: 'login success',
-    };
   }
 }
