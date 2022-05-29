@@ -7,9 +7,6 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
-  findAll() {
-    throw new Error('Method not implemented.');
-  }
   constructor(private readonly prisma: PrismaService) { }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -24,6 +21,10 @@ export class UserService {
       ...createdUser,
       password: undefined,
     };
+  }
+
+  findAll() {
+    return this.prisma.user.findMany();
   }
 
   findByEmail(email: string) {
