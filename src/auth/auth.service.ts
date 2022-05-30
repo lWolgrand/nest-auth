@@ -22,8 +22,6 @@ export class AuthService {
 
     const accessToken: string = this.jwtService.sign(payload);
     return {
-      name: user.name,
-      email: user.email,
       accessToken: accessToken,
     };
   }
