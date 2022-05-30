@@ -22,15 +22,17 @@ export class AuthService {
 
     const accessToken: string = this.jwtService.sign(payload);
     return {
+      name: user.name,
+      email: user.email,
       accessToken: accessToken,
     };
   }
 
   async validateUser(email: string, password: string): Promise<User> {
-    const user = await this.userService.findByEmail(email);
+    const user: User = await this.userService.findByEmail(email);
 
     if (user) {
-      const isValid = await bcrypt.compare(password, user.password);
+      const isValid: boolean = await bcrypt.compare(password, user.password);
       if (isValid) {
         return {
           ...user,

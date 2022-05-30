@@ -7,14 +7,13 @@ import {
   Request,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './guards/local-auth.huard';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthRequest } from './models/AuthRequest';
 import { UserToken } from './models/UserToken';
 
 @Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
-
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
