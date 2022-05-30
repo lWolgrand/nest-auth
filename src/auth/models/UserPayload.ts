@@ -1,5 +1,3 @@
-import { Request } from 'express';
-
 export interface UserPayload {
   sub: number;
   email: string;
